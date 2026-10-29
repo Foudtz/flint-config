@@ -16,6 +16,7 @@ fstools
 fwtool
 getrandom
 hostapd-common
+ip-bridge
 jansson4
 jshn
 jsonfilter
