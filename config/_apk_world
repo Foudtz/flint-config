@@ -8,6 +8,8 @@ dnsmasq
 dropbear
 e2fsprogs
 eip197-mini-firmware
+ethtool
+ethtool-full
 f2fsck
 firewall4
 fit-check-sign
