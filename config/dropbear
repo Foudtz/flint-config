@@ -4,4 +4,5 @@ config dropbear 'main'
 	option PasswordAuth 'off'
 	option RootPasswordAuth 'off'
 	option Port '22'
+	option Interface 'lan'
 
