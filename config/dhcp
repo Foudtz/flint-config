@@ -306,3 +306,33 @@ config host 'h_switch_arthur'
 	option mac '98:e8:fa:07:21:fa'
 	option dns '1'
 
+config host 'h_alexa_parents'
+	option name 'alexa-parents'
+	option ip '10.10.50.40'
+	option mac 'ec:8a:c4:37:83:64'
+	option dns '1'
+
+config host 'h_alexa_tristan'
+	option name 'alexa-tristan'
+	option ip '10.10.50.41'
+	option mac '10:09:f9:b6:a2:39'
+	option dns '1'
+
+config host 'h_alexa_sam'
+	option name 'alexa-sam'
+	option ip '10.10.50.42'
+	option mac 'e0:f7:28:22:6e:af'
+	option dns '1'
+
+config host 'h_alexa_arthur'
+	option name 'alexa-arthur'
+	option ip '10.10.50.43'
+	option mac '14:91:38:fa:6b:50'
+	option dns '1'
+
+config host 'h_alexa_sdb'
+	option name 'alexa-sdb'
+	option ip '10.10.50.44'
+	option mac 'a8:e6:21:dc:7e:02'
+	option dns '1'
+
