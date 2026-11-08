@@ -1,6 +1,7 @@
 #!/bin/sh
 # safe-apply.sh arm [secondes] | confirm | status | restore
 PKGS="firewall dropbear uhttpd dhcp network"
+AGH=/etc/adguardhome/adguardhome.yaml
 SNAP=/root/.safe-apply
 PID=/var/run/safe-apply.pid
 
@@ -12,6 +13,7 @@ case "$1" in
     armed && { echo "Déjà armé (pid $(cat "$PID"))"; exit 1; }
     rm -rf "$SNAP"; mkdir -p "$SNAP"
     for p in $PKGS; do cp -p "/etc/config/$p" "$SNAP/"; done
+    [ -f "$AGH" ] && cp -p "$AGH" "$SNAP/adguardhome.yaml"
     start-stop-daemon -S -b -m -p "$PID" -x /bin/sh -- -c "sleep $DELAY; /root/safe-apply.sh restore"
     logger -t safe-apply "Armé pour ${DELAY}s"
     echo "Armé : retour arrière dans ${DELAY}s, sauf '/root/safe-apply.sh confirm'"
@@ -29,6 +31,14 @@ case "$1" in
     ;;
   restore)
     CHANGED=""
+    AGH_CHANGED=0
+    # 1. AdGuard d'abord : il doit libérer le port 53 avant que dnsmasq le reprenne
+    if [ -f "$SNAP/adguardhome.yaml" ] && ! cmp -s "$AGH" "$SNAP/adguardhome.yaml"; then
+      /etc/init.d/adguardhome stop
+      cp -p "$SNAP/adguardhome.yaml" "$AGH"
+      AGH_CHANGED=1; CHANGED="$CHANGED adguardhome"
+    fi
+    # 2. Fichiers UCI
     for p in $PKGS; do
       uci -q revert "$p"
       if ! cmp -s "/etc/config/$p" "$SNAP/$p"; then
@@ -44,6 +54,8 @@ case "$1" in
         network)  /etc/init.d/network reload ;;
       esac
     done
+    # 3. AdGuard relancé en dernier, avec l'ancienne config
+    [ "$AGH_CHANGED" = 1 ] && /etc/init.d/adguardhome start
     rm -f "$PID"
     logger -t safe-apply "Retour arrière fait :${CHANGED:- rien à restaurer}"
     ;;

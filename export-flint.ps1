@@ -21,6 +21,7 @@ if ($LASTEXITCODE -ne 0) { throw "Export sur le Flint en échec" }
 if (Test-Path .\config) { Remove-Item .\config -Recurse -Force }
 New-Item -ItemType Directory .\config | Out-Null
 scp -O -i $Key "${Router}:/tmp/cfg-export/*" .\config\
+scp -O -i $Key "${Router}:/tmp/cfg-export-scripts/*" .\scripts\
 if ($LASTEXITCODE -ne 0) { throw "Copie scp en échec" }
 
 # 3. Garde-fou : aucun secret en clair ne doit partir
