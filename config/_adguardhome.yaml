@@ -98,7 +98,8 @@ tls:
   strict_sni_check: false
 querylog:
   dir_path: ""
-  ignored: []
+  ignored:
+    - adguard-check.internal
   interval: 90d
   size_memory: 1000
   enabled: true

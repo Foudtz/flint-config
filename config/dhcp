@@ -336,3 +336,15 @@ config host 'h_alexa_sdb'
 	option mac 'a8:e6:21:dc:7e:02'
 	option dns '1'
 
+config host 'h_tv_salon'
+	option name 'tv-salon'
+	option mac '94:62:6d:44:cb:24'
+	option ip '10.10.20.10'
+	option dns '1'
+
+config host 'h_firetv'
+	option name 'firetv'
+	option mac '80:6d:71:26:47:b4'
+	option ip '10.10.20.11'
+	option dns '1'
+
