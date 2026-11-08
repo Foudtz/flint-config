@@ -126,6 +126,11 @@ filters:
 whitelist_filters: []
 user_rules:
   - '||use-application-dns.net^$dnsrewrite=NXDOMAIN'
+  - '||search.brave.com^$client=''Limited (enfants)'''
+  - '||qwant.com^$client=''Limited (enfants)'''
+  - '||startpage.com^$client=''Limited (enfants)'''
+  - '||search.yahoo.com^$client=''Limited (enfants)'''
+  - '||presearch.com^$client=''Limited (enfants)'''
 dhcp:
   enabled: false
   interface_name: ""
@@ -194,7 +199,134 @@ clients:
     rdns: true
     dhcp: true
     hosts: true
-  persistent: []
+  persistent:
+    - safe_search:
+        enabled: true
+        bing: true
+        duckduckgo: true
+        ecosia: true
+        google: true
+        pixabay: true
+        yandex: true
+        youtube: true
+      blocked_services:
+        schedule:
+          time_zone: UTC
+        ids:
+          - 4chan
+          - 500px
+          - 9gag
+          - activision_blizzard
+          - amazon_streaming
+          - amino
+          - apple_streaming
+          - betano
+          - betfair
+          - betway
+          - bigo_live
+          - bilibili
+          - blaze
+          - bluesky
+          - box
+          - canais_globo
+          - claro
+          - clubhouse
+          - coolapk
+          - crunchyroll
+          - directvgo
+          - discord
+          - discoveryplus
+          - douban
+          - dropbox
+          - ebay
+          - espn
+          - facebook
+          - fdj_united
+          - flickr
+          - globoplay
+          - grindr
+          - hbomax
+          - hulu
+          - icloud_private_relay
+          - iheartradio
+          - imgur
+          - instagram
+          - io_interactive
+          - iqiyi
+          - kakaotalk
+          - kik
+          - kook
+          - lazada
+          - line
+          - linkedin
+          - lionsgateplus
+          - looke
+          - mail_ru
+          - manus
+          - mastodon
+          - max
+          - mercado_libre
+          - nebula
+          - odysee
+          - ok
+          - olvid
+          - onlyfans
+          - paramountplus
+          - peacock_tv
+          - pinterest
+          - plenty_of_fish
+          - pluto_tv
+          - privacy
+          - proton
+          - qq
+          - rakuten_viki
+          - reddit
+          - samsung_tv_plus
+          - shein
+          - shell_shockers
+          - shopee
+          - signal
+          - slack
+          - snapchat
+          - soundcloud
+          - spotify_video
+          - telegram
+          - temu
+          - tidal
+          - tiktok
+          - tinder
+          - tumblr
+          - twitch
+          - twitter
+          - ubisoft
+          - viber
+          - vimeo
+          - vivo_play
+          - vk
+          - voot
+          - wargaming
+          - warnerbrosgames
+          - wechat
+          - weibo
+          - wizz
+          - xiaohongshu
+          - yy
+          - zhihu
+      name: Limited (enfants)
+      ids:
+        - 10.10.60.0/24
+      tags: []
+      upstreams: []
+      uid: 01a1ba90-a1b3-7641-beb1-3178abf42738
+      upstreams_cache_size: 0
+      upstreams_cache_enabled: false
+      use_global_settings: false
+      filtering_enabled: true
+      parental_enabled: true
+      safebrowsing_enabled: true
+      use_global_blocked_services: false
+      ignore_querylog: false
+      ignore_statistics: false
 log:
   enabled: true
   file: ""
