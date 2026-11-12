@@ -593,6 +593,7 @@ config redirect 'wan_plex'
 	option dest_port '32400'
 	option target 'DNAT'
 	option family 'ipv4'
+	option enabled '0'
 
 config rule 'user_plex'
 	option name 'Allow-user-Plex'
